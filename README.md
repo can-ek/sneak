@@ -11,6 +11,7 @@ Throwback to the old phone game in python
 
 ``
 uv init your-project-name
+
 cd your-project-name
 ``
 
