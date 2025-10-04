@@ -12,7 +12,9 @@ Throwback to the old phone game in python
 ``
 uv init your-project-name
 
+
 cd your-project-name
+
 ``
 
 2. Create a virtual environment at the top level of your project directory:
