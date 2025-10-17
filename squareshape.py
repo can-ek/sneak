@@ -18,9 +18,10 @@ class SquareShape(pygame.sprite.Sprite):
         pygame.draw.rect(screen, self.color, self.rect)
 
     def update(self, dt):
+        snapped_pos = self.snap_rect()
         self.rect = pygame.Rect(
-                self.position[0],
-                self.position[1],
+                snapped_pos[0],
+                snapped_pos[1],
                 SQUARE_WIDTH,
                 SQUARE_WIDTH)
 
@@ -29,3 +30,21 @@ class SquareShape(pygame.sprite.Sprite):
 
     def set_color(self, new_color):
         self.color = new_color
+
+    def snap_rect(self):
+        x_i = self.position[0]
+        y_i = self.position[1]
+
+        half_step = SQUARE_WIDTH // 2
+        move_fwd_x = x_i % SQUARE_WIDTH >= half_step
+        move_fwd_y = y_i % SQUARE_WIDTH >= half_step
+
+        column = (x_i // SQUARE_WIDTH)
+        row = (y_i // SQUARE_WIDTH)
+
+        if move_fwd_x:
+            column += 1
+        if move_fwd_y:
+            row += 1
+
+        return pygame.Vector2(column * SQUARE_WIDTH, row * SQUARE_WIDTH)
